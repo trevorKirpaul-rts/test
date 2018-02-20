@@ -58,6 +58,7 @@ export class UserForm extends Component {
       this.handleCreateUser({ name: username, email, password });
     } else if (formComplete && method === 'patch') {
       this.handlePatchUser({ name: username, email, password });
+      this.props.history.push('/users');
     }
   };
   handleCreateUser = fields => {
