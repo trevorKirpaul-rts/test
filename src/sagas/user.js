@@ -58,6 +58,46 @@ function* getUser(action) {
   }
 }
 
+// edit user
+function* editUser(action) {
+  try {
+    const user = yield call(axios.patch, `${USERS}/${action.id}`, {
+      ...action.user,
+    });
+    yield put({
+      type: 'USER:EDIT_SUCCESS',
+      loading: false,
+      error: false,
+      data: user.data,
+    });
+  } catch (e) {
+    yield put({
+      type: 'USER:EDIT_FAIL',
+      loading: false,
+      error: e,
+    });
+  }
+}
+
+// delete user
+function* deleteUser(action) {
+  try {
+    const user = yield call(axios.delete, `${USERS}/${action.id}`);
+    yield put({
+      type: 'USER:DELETE_SUCCESS',
+      loading: false,
+      error: false,
+      deletedUser: user.status,
+    });
+  } catch (e) {
+    yield put({
+      type: 'USER:DELETE_FAIL',
+      loading: false,
+      error: e,
+    });
+  }
+}
+
 // listeners
 
 export function* startCreateUser() {
@@ -70,4 +110,12 @@ export function* startGetUsers() {
 
 export function* startGetUser() {
   yield takeLatest('USER:START_FETCH:ONE', getUser);
+}
+
+export function* startEditUser() {
+  yield takeLatest('USER:EDIT', editUser);
+}
+
+export function* startDeleteUser() {
+  yield takeLatest('USER:DELETE', deleteUser);
 }

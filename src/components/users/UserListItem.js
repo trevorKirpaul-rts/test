@@ -50,7 +50,7 @@ const Button = styled.button`
   }
 `;
 
-export default ({ id, name, password, email }) => {
+export default ({ id, name, password, email, handleOpenModal }) => {
   return (
     <Wrapper>
       <FieldWrapper>
@@ -69,7 +69,9 @@ export default ({ id, name, password, email }) => {
           <Button warning>Edit</Button>
         </Link>
         <Button primary>View</Button>
-        <Button danger>Delete</Button>
+        <Button danger onClick={handleOpenModal}>
+          Delete
+        </Button>
       </ActionWrapper>
     </Wrapper>
   );

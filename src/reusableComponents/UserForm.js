@@ -36,6 +36,7 @@ export class UserForm extends Component {
       username: '',
       password: '',
       email: '',
+      id: '',
       error: false,
       method: '',
     };
@@ -54,9 +55,10 @@ export class UserForm extends Component {
     // check if form fields are filled
     // also check if creating or patching user
     if (formComplete && method === 'create') {
-      this.handleCreateUser({ username, email, password });
+      this.handleCreateUser({ name: username, email, password });
     } else if (formComplete && method === 'patch') {
-      this.handlePatchUser({ username, email, password });
+      this.handlePatchUser({ name: username, email, password });
+      this.props.history.push('/users');
     }
   };
   handleCreateUser = fields => {
@@ -64,7 +66,8 @@ export class UserForm extends Component {
     this.setState({ username: '', password: '', email: '', error: false });
   };
   handlePatchUser = fields => {
-    this.props.patchUser(fields);
+    const id = this.state.id;
+    this.props.patchUser({ ...fields, id });
     this.setState({ username: '', password: '', email: '', error: false });
   };
   componentDidMount() {
@@ -79,8 +82,8 @@ export class UserForm extends Component {
   componentWillReceiveProps(nextProps) {
     const users = nextProps.users;
     if (users.singleUser) {
-      const { name: username, password, email } = users.singleUser;
-      this.setState({ username, password, email });
+      const { name: username, password, email, id } = users.singleUser;
+      this.setState({ username, password, email, id });
     }
   }
   render() {
