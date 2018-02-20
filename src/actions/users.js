@@ -1,4 +1,4 @@
-export const createUser = (name, password, email) => ({
+export const createUser = ({ name, password, email }) => ({
   type: 'USER:CREATE',
   user: {
     name,

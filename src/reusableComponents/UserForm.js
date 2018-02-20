@@ -56,6 +56,7 @@ export class UserForm extends Component {
     // also check if creating or patching user
     if (formComplete && method === 'create') {
       this.handleCreateUser({ name: username, email, password });
+      this.props.history.push('/users');
     } else if (formComplete && method === 'patch') {
       this.handlePatchUser({ name: username, email, password });
       this.props.history.push('/users');
