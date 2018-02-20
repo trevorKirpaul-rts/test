@@ -4,6 +4,7 @@ import {
   startGetUsers,
   startGetUser,
   startEditUser,
+  startDeleteUser,
 } from './user';
 
 export default function* rootSaga() {
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     startGetUsers(),
     startGetUser(),
     startEditUser(),
+    startDeleteUser(),
   ]);
 }

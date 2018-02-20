@@ -29,3 +29,17 @@ export const getUsers = () => ({
   loading: true,
   error: false,
 });
+
+export const deleteUser = id => ({
+  type: 'USER:DELETE',
+  loading: true,
+  error: false,
+  id,
+  deletedUser: false,
+});
+
+// dispatch to clear 'deletedUser' status from 204 to 'reset
+export const resetDeleteCheck = () => ({
+  type: 'USER:RESET_DELETE_CHECK',
+  deletedUser: 'reset',
+});

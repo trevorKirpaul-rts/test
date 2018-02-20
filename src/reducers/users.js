@@ -18,6 +18,13 @@ export default (state = defaultState, action) => {
         loading: action.loading,
         error: action.error,
       };
+    case 'USER:DELETE':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        deletedUser: action.deletedUser,
+      };
     case 'USER:CREATE_SUCCESS':
       return {
         ...state,
@@ -32,6 +39,14 @@ export default (state = defaultState, action) => {
         error: action.error,
         data: action.data,
       };
+    case 'USER:DELETE_SUCCESS': {
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        deletedUser: action.deletedUser,
+      };
+    }
     case 'USER:CREATE_FAIL':
       return {
         ...state,
@@ -42,7 +57,13 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         loading: action.loading,
-        error: action.e,
+        error: action.error,
+      };
+    case 'USER:DELETE_FAIL':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
       };
     case 'USERS:START_FETCH:ALL':
       return {
@@ -81,6 +102,11 @@ export default (state = defaultState, action) => {
         ...state,
         loading: action.loading,
         error: action.error,
+      };
+    case 'USER:RESET_DELETE_CHECK':
+      return {
+        ...state,
+        deletedUser: action.deletedUser,
       };
     default:
       return state;

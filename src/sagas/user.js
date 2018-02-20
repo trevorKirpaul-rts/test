@@ -79,6 +79,25 @@ function* editUser(action) {
   }
 }
 
+// delete user
+function* deleteUser(action) {
+  try {
+    const user = yield call(axios.delete, `${USERS}/${action.id}`);
+    yield put({
+      type: 'USER:DELETE_SUCCESS',
+      loading: false,
+      error: false,
+      deletedUser: user.status,
+    });
+  } catch (e) {
+    yield put({
+      type: 'USER:DELETE_FAIL',
+      loading: false,
+      error: e,
+    });
+  }
+}
+
 // listeners
 
 export function* startCreateUser() {
@@ -95,4 +114,8 @@ export function* startGetUser() {
 
 export function* startEditUser() {
   yield takeLatest('USER:EDIT', editUser);
+}
+
+export function* startDeleteUser() {
+  yield takeLatest('USER:DELETE', deleteUser);
 }
