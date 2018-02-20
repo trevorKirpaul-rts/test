@@ -4,11 +4,39 @@ import styled from 'styled-components';
 
 // STYLES
 const Button = styled.button`
+  border: none;
   display: inline-block;
-  padding: 5px 10px;
-  background: #fb4d3d;
+  padding: 10px 10px;
+  background: palevioletred;
   color: #f8f8f8;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
+
+const ModalTitle = styled.h3`
+  font-weight: 300;
+  font-size: 1.5em;
+`;
+
+const ModalWarning = styled.p`
+  color: red;
+`;
+
+const modalStyle = {
+  overlay: {},
+  content: {
+    border: '2px solid palevioletred',
+    textAlign: 'center',
+    maxHeight: '300px',
+    maxWidth: '450px',
+    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+};
 
 export default ({ open, handleCloseModal, handleDeleteUser }) => {
   return (
@@ -17,9 +45,10 @@ export default ({ open, handleCloseModal, handleDeleteUser }) => {
       onRequestClose={handleCloseModal}
       contentLabel="Modal"
       ariaHideApp={false}
+      style={modalStyle}
     >
-      <h3>Are you sure you want to delete this user?</h3>
-      <p>This action is permanent!</p>
+      <ModalTitle>Are you sure you want to delete this user?</ModalTitle>
+      <ModalWarning>This action is permanent!</ModalWarning>
       <Button onClick={handleDeleteUser}>Confirm Delete</Button>
     </Modal>
   );
