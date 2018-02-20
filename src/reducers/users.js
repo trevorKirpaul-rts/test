@@ -12,6 +12,12 @@ export default (state = defaultState, action) => {
         loading: true,
         error: false,
       };
+    case 'USER:EDIT':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+      };
     case 'USER:CREATE_SUCCESS':
       return {
         ...state,
@@ -19,11 +25,24 @@ export default (state = defaultState, action) => {
         error: false,
         profile: action.user,
       };
+    case 'USER:EDIT_SUCCESS':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        data: action.data,
+      };
     case 'USER:CREATE_FAIL':
       return {
         ...state,
         loading: false,
         error: true,
+      };
+    case 'USER:EDIT_FAIL':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.e,
       };
     case 'USERS:START_FETCH:ALL':
       return {

@@ -7,13 +7,14 @@ export const createUser = (name, password, email) => ({
   },
 });
 
-export const patchUser = (name, password, email) => ({
+export const patchUser = ({ name, password, email, id }) => ({
   type: 'USER:EDIT',
   user: {
     name,
     password,
     email,
   },
+  id,
 });
 
 export const getUser = id => ({

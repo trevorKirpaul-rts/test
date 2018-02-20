@@ -1,6 +1,16 @@
 import { all } from 'redux-saga/effects';
-import { startCreateUser, startGetUsers, startGetUser } from './user';
+import {
+  startCreateUser,
+  startGetUsers,
+  startGetUser,
+  startEditUser,
+} from './user';
 
 export default function* rootSaga() {
-  yield all([startCreateUser(), startGetUsers(), startGetUser()]);
+  yield all([
+    startCreateUser(),
+    startGetUsers(),
+    startGetUser(),
+    startEditUser(),
+  ]);
 }
