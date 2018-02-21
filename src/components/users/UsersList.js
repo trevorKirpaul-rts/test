@@ -17,9 +17,9 @@ export default ({
 }) => {
   if (users.length === 0) {
     return (
-      <ListItem>
-        <p>No Users</p>
-      </ListItem>
+      <List>
+        <ListItem>No Users</ListItem>
+      </List>
     );
   } else {
     return (

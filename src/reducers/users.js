@@ -30,6 +30,7 @@ export default (state = defaultState, action) => {
         ...state,
         loading: false,
         error: false,
+        all: [...state.all, action.user],
         profile: action.user,
       };
     case 'USER:EDIT_SUCCESS':

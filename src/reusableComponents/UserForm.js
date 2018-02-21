@@ -95,6 +95,7 @@ export class UserForm extends Component {
         <TitlePanel title={title} subtitle={subtitle} />
         <FormWrapper>
           <UserFormField
+            autofocus={true}
             type="text"
             onChange={this.handleOnChange}
             name="username"

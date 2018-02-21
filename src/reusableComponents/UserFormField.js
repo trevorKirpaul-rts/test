@@ -10,9 +10,10 @@ const Input = styled.input`
   background: white;
   border: none;
   color: #383838;
+  width: 50%;
 `;
 
-export default ({ name, placeholder, type, onChange, value }) => {
+export default ({ name, placeholder, type, onChange, value, autofocus }) => {
   return (
     <FieldWrapper>
       <Input
@@ -21,6 +22,7 @@ export default ({ name, placeholder, type, onChange, value }) => {
         type={type || 'text'}
         onChange={onChange}
         value={value}
+        autoFocus={autofocus}
       />
     </FieldWrapper>
   );

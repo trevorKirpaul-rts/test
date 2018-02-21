@@ -15,9 +15,15 @@ const Button = styled.button`
   }
 `;
 
+const GhostButton = Button.extend`
+  background: white;
+  color: palevioletred;
+  border: 1px solid palevioletred;
+`;
+
 const ModalTitle = styled.h3`
   font-weight: 300;
-  font-size: 1.5em;
+  font-size: 1.3em;
 `;
 
 const ModalWarning = styled.p`
@@ -49,6 +55,8 @@ export default ({ open, handleCloseModal, handleDeleteUser }) => {
     >
       <ModalTitle>Are you sure you want to delete this user?</ModalTitle>
       <ModalWarning>This action is permanent!</ModalWarning>
+
+      <GhostButton onClick={handleCloseModal}>Cancel</GhostButton>
       <Button onClick={handleDeleteUser}>Confirm Delete</Button>
     </Modal>
   );
