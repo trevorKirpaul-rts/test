@@ -38,6 +38,7 @@ export class UsersContainer extends Component {
   componentWillReceiveProps(nextProps) {
     const users = nextProps.users;
     if (users.all) {
+      console.log(users.all);
       this.setState(() => ({
         users: users.all,
       }));

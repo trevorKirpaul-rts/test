@@ -37,6 +37,13 @@ export default (state = defaultState, action) => {
         ...state,
         loading: action.loading,
         error: action.error,
+        all: state.all.map(user => {
+          if (user.id === action.data.id) {
+            return action.data;
+          } else {
+            return user;
+          }
+        }),
         data: action.data,
       };
     case 'USER:DELETE_SUCCESS': {
