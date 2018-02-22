@@ -1,15 +1,16 @@
 import { put, takeEvery, takeLatest, call } from 'redux-saga/effects';
-import { USERS } from '../config';
+import { USERS, USER } from '../config';
 import axios from 'axios';
 
 // create user saga
 function* createUser(action) {
-  const { name, password, email } = action.user;
+  const { password, email, firstName, lastName } = action.user;
   try {
-    const user = yield call(axios.post, USERS, {
-      name,
+    const user = yield call(axios.post, USER, {
       password,
       email,
+      firstName,
+      lastName,
     });
     yield put({
       type: 'USER:CREATE_SUCCESS',

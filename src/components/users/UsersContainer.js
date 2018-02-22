@@ -33,26 +33,24 @@ export class UsersContainer extends Component {
     }));
   };
   componentDidMount() {
-    this.props.getUsers();
+    // this.props.getUsers();
   }
   componentWillReceiveProps(nextProps) {
-    const users = nextProps.users;
-    if (users.all) {
-      console.log(users.all);
-      this.setState(() => ({
-        users: users.all,
-      }));
-    }
-
-    /*
-      check if we succesfully deleted user via store then re-fetch all users
-      This is a temp fix since I couldn't use setState to change local state
-      in `handleDeleteUser`
-    */
-    if (users.deletedUser === 204) {
-      this.props.resetDeleteCheck();
-      this.props.getUsers();
-    }
+    // const users = nextProps.users;
+    // if (users.all) {
+    //   this.setState(() => ({
+    //     users: users.all,
+    //   }));
+    // }
+    // /*
+    //   check if we succesfully deleted user via store then re-fetch all users
+    //   This is a temp fix since I couldn't use setState to change local state
+    //   in `handleDeleteUser`
+    // */
+    // if (users.deletedUser === 204) {
+    //   this.props.resetDeleteCheck();
+    //   this.props.getUsers();
+    // }
   }
   render() {
     const { users, open } = this.state;
@@ -76,6 +74,7 @@ export class UsersContainer extends Component {
 
 const mapStateToProps = state => ({
   users: state.Users,
+  signIn: state.signIn,
 });
 
 const mapDispatchToProps = dispatch => ({

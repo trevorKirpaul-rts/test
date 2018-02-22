@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export default () => {
+export default ({ auth }) => {
   return (
     <Wrapper>
       <LogoWrapper>
@@ -41,8 +41,19 @@ export default () => {
       </LogoWrapper>
       <Nav>
         <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/createUser">Create User</StyledLink>
-        <StyledLink to="/users">Users</StyledLink>
+        {auth === true && (
+          <div>
+            <StyledLink to="/signout">Sign Out</StyledLink>
+            <StyledLink to="/users">Users</StyledLink>
+          </div>
+        )}
+
+        {auth === false && (
+          <div>
+            <StyledLink to="/createUser">Create User</StyledLink>
+            <StyledLink to="/signin">Sign In</StyledLink>
+          </div>
+        )}
       </Nav>
     </Wrapper>
   );

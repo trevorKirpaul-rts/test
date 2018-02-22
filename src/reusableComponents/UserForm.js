@@ -36,6 +36,8 @@ export class UserForm extends Component {
       username: '',
       password: '',
       email: '',
+      firstName: '',
+      lastName: '',
       id: '',
       error: false,
       method: '',
@@ -48,28 +50,53 @@ export class UserForm extends Component {
     this.setState({ [field]: value });
   };
   handleOnSubmit = () => {
-    const { username, email, password } = this.state;
-    const formComplete = username !== '' && email !== '' && password !== '';
+    const { username, password, email, firstName, lastName } = this.state;
+    // check if any fields are blank
+    const formComplete = () => {
+      const fields = [username, password, firstName, lastName];
+      fields.forEach(field => {
+        if (field === '') {
+          return false;
+        }
+      });
+      return true;
+    };
+
+    // check if this component was called from create or patch HoC
     const { method } = this.props;
 
     // check if form fields are filled
     // also check if creating or patching user
-    if (formComplete && method === 'create') {
-      this.handleCreateUser({ name: username, email, password });
-      this.props.history.push('/users');
-    } else if (formComplete && method === 'patch') {
+    if (formComplete() === true && method === 'create') {
+      this.handleCreateUser({ firstName, lastName, email, password });
+      // this.props.history.push('/users');
+    } else if (formComplete === true && method === 'patch') {
       this.handlePatchUser({ name: username, email, password });
       this.props.history.push('/users');
+    } else {
     }
   };
   handleCreateUser = fields => {
     this.props.createUser(fields);
-    this.setState({ username: '', password: '', email: '', error: false });
+    this.setState({
+      password: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      error: false,
+    });
   };
   handlePatchUser = fields => {
     const id = this.state.id;
     this.props.patchUser({ ...fields, id });
-    this.setState({ username: '', password: '', email: '', error: false });
+    this.setState({
+      username: '',
+      password: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      error: false,
+    });
   };
   componentDidMount() {
     if (this.props.method === 'create') {
@@ -89,7 +116,7 @@ export class UserForm extends Component {
   }
   render() {
     const { title, subtitle } = this.props;
-    const { username, password, email } = this.state;
+    const { username, password, email, firstName, lastName } = this.state;
     return (
       <Wrapper>
         <TitlePanel title={title} subtitle={subtitle} />
@@ -107,6 +134,20 @@ export class UserForm extends Component {
             name="email"
             placeholder="email"
             value={email}
+            onChange={this.handleOnChange}
+          />
+          <UserFormField
+            type="text"
+            name="firstName"
+            placeholder="first name"
+            value={firstName}
+            onChange={this.handleOnChange}
+          />
+          <UserFormField
+            type="text"
+            name="lastName"
+            placeholder="lastName"
+            value={lastName}
             onChange={this.handleOnChange}
           />
           <UserFormField
