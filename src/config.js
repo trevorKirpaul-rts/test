@@ -7,3 +7,7 @@ export const USERS = `${API}/users`;
 export const USER = `${API}/user`;
 
 export const SIGN_IN = `${API}/signin`;
+
+export const TOKEN = `${API}/token`;
+
+export const SEED = `${API}/seed`;

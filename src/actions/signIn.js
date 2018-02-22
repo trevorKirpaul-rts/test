@@ -10,7 +10,13 @@ export const signIn = ({ email, password }) => ({
 
 export const signOut = () => ({
   type: 'SIGN-OUT',
-  auth: false,
-  loading: false,
+  loading: true,
   error: false,
+});
+
+export const tokenSignIn = token => ({
+  type: 'SIGN-IN:TOKEN_START',
+  loading: true,
+  error: false,
+  token,
 });

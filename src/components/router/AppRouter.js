@@ -7,6 +7,7 @@ import EditUser from '../editUser/EditUser';
 import Users from '../users/UsersContainer';
 import SignIn from '../signIn/SignInContainer';
 import SignOut from '../signOut/SignOut';
+import Admin from '../admin/AdminContainer';
 
 import CheckAuth from '../../HoC/CheckAuth';
 
@@ -22,6 +23,7 @@ export default () => {
           <Route exact path="/users" component={CheckAuth(Users)} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signout" component={SignOut} />
+          <Route exact path="/admin" component={Admin} />
         </Switch>
       </div>
     </BrowserRouter>

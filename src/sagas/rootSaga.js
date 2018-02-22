@@ -6,7 +6,8 @@ import {
   startEditUser,
   startDeleteUser,
 } from './user';
-import { startSignIn } from './signIn';
+import { startSignIn, startSignOut, startTokenSignIn } from './signIn';
+import { startSeedingDB } from './admin';
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +17,8 @@ export default function* rootSaga() {
     startEditUser(),
     startDeleteUser(),
     startSignIn(),
+    startSignOut(),
+    startTokenSignIn(),
+    startSeedingDB(),
   ]);
 }

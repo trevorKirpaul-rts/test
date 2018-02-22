@@ -4,6 +4,12 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case 'SIGN-IN:TOKEN_START':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+      };
     case 'SIGN-IN:START':
       return {
         ...state,
@@ -28,8 +34,15 @@ export default (state = defaultState, action) => {
       };
     case 'SIGN-OUT':
       return {
-        auth: action.auth,
+        ...state,
         loading: action.loading,
+        error: action.error,
+      };
+    case 'SIGN-OUT:SUCCESS':
+      return {
+        loading: action.loading,
+        auth: action.auth,
+        user: action.user,
         error: action.error,
       };
     default:

@@ -43,6 +43,7 @@ export default ({ auth }) => {
         <StyledLink to="/">Home</StyledLink>
         {auth === true && (
           <div>
+            <StyledLink to="/admin">Admin</StyledLink>
             <StyledLink to="/signout">Sign Out</StyledLink>
             <StyledLink to="/users">Users</StyledLink>
           </div>
